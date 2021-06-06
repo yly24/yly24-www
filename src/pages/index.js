@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
+import Footer from "../components/Footer"
 import Seo from "../components/seo"
 
 import { formatPostDate, formatReadingTime } from "../utils/helpers"
@@ -64,6 +65,7 @@ const BlogIndex = ({ data, location }) => {
           )
         })}
       </ol>
+      <Footer />
     </Layout>
   )
 }
