@@ -4,6 +4,9 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import "../fonts/fonts-post.css"
+
+import { formatPostDate, formatReadingTime } from "../utils/helpers"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -22,8 +25,13 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 itemProp="headline" style={{ color: "var(--textTitle)" }}>
+            {post.frontmatter.title}
+          </h1>
+          <p>
+            {formatPostDate(post.frontmatter.date, 'us')}
+            {` • ${formatReadingTime(post.timeToRead)}`}
+          </p>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -81,6 +89,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      timeToRead
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

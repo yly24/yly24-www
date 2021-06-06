@@ -31,26 +31,31 @@ const Bio = () => {
   const social = data.site.siteMetadata?.social
 
   return (
-    <div className="bio">
+    <div className="bio" style={{ display: "flex" }}>
       <StaticImage
         className="bio-avatar"
         layout="fixed"
         formats={["AUTO", "WEBP", "AVIF"]}
-        src="../images/profile-pic.png"
+        src="../assets/profile-pic.png"
         width={50}
         height={50}
         quality={95}
         alt="Profile picture"
+        style={{ borderRadius: "50%" }}
       />
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow them on Twitter
+      <div style={{ marginLeft: 10 }}>
+        <div style={{ maxWidth: 310 }}>
+          Personal blog by{" "}
+          <a
+            href={`https://twitter.com/${social?.twitter || ``}`}
+            target="__blank"
+          >
+            {author.name}
           </a>
-        </p>
-      )}
+          .
+        </div>
+        <div style={{ maxWidth: 310 }}>{author?.summary || null}</div>
+      </div>
     </div>
   )
 }
